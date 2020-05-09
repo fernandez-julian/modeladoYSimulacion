@@ -57,4 +57,4 @@ def rungeKutta (x0, t0, tf, h, f):
 
 #euler(0, 0, 1, 0.25, f)
 #euler_mejorado(2, 0, 1, 0.1, f)
-rungeKutta(2, 0, 1, 0.1, f)
+#rungeKutta(2, 0, 1, 0.1, f)
