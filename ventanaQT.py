@@ -11,10 +11,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from mplwidget import MplWidget
 
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1118, 647)
+        MainWindow.resize(1400, 647)
         MainWindow.setWindowTitle("Modelado y Simulacion")
         MainWindow.setStyleSheet("background-color: rgb(240, 240, 240);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -100,6 +101,7 @@ class Ui_MainWindow(object):
         self.lineEdit_h.setObjectName("lineEdit_h")
         self.pushButton_graficar = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_graficar.setGeometry(QtCore.QRect(130, 510, 171, 41))
+        self.pushButton_graficar.clicked.connect(self.clickMetodo)
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(10)
@@ -114,7 +116,7 @@ class Ui_MainWindow(object):
         self.label_titulo.setFont(font)
         self.label_titulo.setObjectName("label_titulo")
         self.MplWidget = MplWidget(self.centralwidget)
-        self.MplWidget.setGeometry(QtCore.QRect(450, 40, 661, 551))
+        self.MplWidget.setGeometry(QtCore.QRect(450, 40, 900, 551))
         self.MplWidget.setObjectName("MplWidget")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -142,6 +144,21 @@ class Ui_MainWindow(object):
         self.label_h.setText(_translate("MainWindow", "h (incremento) ="))
         self.pushButton_graficar.setText(_translate("MainWindow", "Graficar"))
         self.label_titulo.setText(_translate("MainWindow", "Problemas de valor inicial"))
+
+    def clickMetodo(self):
+        self.funcion = self.lineEdit_input.text()
+        self.xi = float(self.lineEdit_xi.text())
+        self.ti = float(self.lineEdit_ti.text())
+        self.tf = float(self.lineEdit_tf.text())
+        self.h = float(self.lineEdit_h.text())
+        self.MplWidget.recalculateData(self.comboBox_metodos.currentIndex(), self.funcion, self.xi, self.ti, self.tf, self.h)
+        """if (self.comboBox_metodos.currentIndex() == 0):
+            euler(self.xi,self.ti,self.tf,self.h, self.funcion)
+        if (self.comboBox_metodos.currentIndex() == 1):
+            euler_mejorado(self.xi,self.ti,self.tf,self.h, self.funcion)
+        if (self.comboBox_metodos.currentIndex() == 2):
+            rungeKutta(self.xi,self.ti,self.tf,self.h, self.funcion)"""
+
 
 
 if __name__ == "__main__":
