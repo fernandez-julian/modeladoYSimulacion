@@ -9,6 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from mplwidget import MplWidget
+from PyQt5.QtGui import QIcon
 
 
 
@@ -16,8 +17,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1400, 647)
-        MainWindow.setWindowTitle("Modelado y Simulacion")
+        MainWindow.setWindowTitle("Modelado y Simulación")
         MainWindow.setStyleSheet("background-color: rgb(240, 240, 240);")
+        MainWindow.setWindowIcon(QIcon('icon.ico'))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.comboBox_metodos = QtWidgets.QComboBox(self.centralwidget)
@@ -127,6 +129,12 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        self.label_author = QtWidgets.QLabel(self.centralwidget)
+        self.label_author.setGeometry(QtCore.QRect(10, 600, 1000, 25))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -135,15 +143,16 @@ class Ui_MainWindow(object):
         self.comboBox_metodos.setItemText(0, _translate("MainWindow", "Euler"))
         self.comboBox_metodos.setItemText(1, _translate("MainWindow", "Euler mejorado"))
         self.comboBox_metodos.setItemText(2, _translate("MainWindow", "Runge-Kutta"))
-        self.label_seleccionMetodo.setText(_translate("MainWindow", "Metodo numerico"))
+        self.label_seleccionMetodo.setText(_translate("MainWindow", "Método numerico"))
         self.label_dxdt.setText(_translate("MainWindow", "dx/dt ="))
-        self.label_parametros.setText(_translate("MainWindow", "Parametros:"))
+        self.label_parametros.setText(_translate("MainWindow", "Parámetros:"))
         self.label_ti.setText(_translate("MainWindow", "t inicial ="))
         self.label_tf.setText(_translate("MainWindow", "t final ="))
         self.label_xi.setText(_translate("MainWindow", "x inicial ="))
         self.label_h.setText(_translate("MainWindow", "h (incremento) ="))
         self.pushButton_graficar.setText(_translate("MainWindow", "Graficar"))
         self.label_titulo.setText(_translate("MainWindow", "Problemas de valor inicial"))
+        self.label_author.setText(_translate("MainWindow", "Autores: Gastón Ceccotti Espeche, Florencia de la Rasilla Siri, Agustina Diaz, Julian Fernández Santos, Facundo Montesanto"))
 
     def clickMetodo(self):
         self.funcion = self.lineEdit_input.text()
